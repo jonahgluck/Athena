@@ -2,26 +2,41 @@
 #include <iostream>
 
 int main() {
-  //Tensor<double*> x({2,2,2});
-  //std::cout << "transpose: " << std::endl;
-  //x.T<double>();
-  //double d = x.get<double>({0,1,1});
-  //std::cout << "selected value: " << d << std::endl;
-
-  TensorImpl<double, 4,5,2> x;
-  ops::fill<double>(x, 5);
-
+  TensorImpl<double,3,3> x;
+  //TensorImpl<double, 4> y;
+  op::fill<double>(x, 3);
+  op::tpow<double>(x, 3);
+  //op::fill<double>(y, 2);
   //x.get(0).get(0).update(1, 4)
-
-  //for(std::size_t i=0; i<4; i++) {
-    //for(std::size_t j=0; j<2; j++) {
-      //for(std::size_t k=0; k<sizeof(x.get(0).get(0))/sizeof(x.get(0).get(0).get(0)); k++) {
-        //std::cout << i << j << std::endl;
-        //std::cout << x.get(i) << std::endl;
-      //}
-    //}
-  //}
   
+  int val = 1;
+  for(std::size_t i=0; i<x.getDim()[0]; i++) {
+    for(std::size_t j=0; j<x.getDim()[1]; j++) {
+      x.get(i).update(j, val);
+      val += 1;
+    }
+  }
+  
+  // 2d rect tensor transpoed 
+  auto nx = la::T_<double,3,3>(x);
+
+  for(std::size_t i=0; i<nx.getDim()[0]; i++) {
+    for(std::size_t j=0; j<nx.getDim()[1]; j++) {
+      std::cout << nx.get(i).get(j) << std::endl;
+    }
+  }
+
+  //for(int i=0; i<x.getDim()[0]; i++) {
+  //  std::cout << x.get(i) << std::endl;
+  //}
+
+  //op::sq<double>(x);
+  //op::tsqrt<double>(x);
+
+  //for(int i=0; i<x.getDim()[0]; i++) {
+  //  std::cout << x.get(i) << std::endl;
+  //}
+
   return 0;
 }
 
