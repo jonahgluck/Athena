@@ -1,9 +1,8 @@
 # Athena
 
-#TODO
+# TODO
 - [X] fill 0 and 1 (ndims)
 - [ ] add tensor data type (dtype) property
-- [ ] Custom operator -> @ 
 - [ ] matmul & dot product 
 - [ ] rename getDim() as dim()
 - [ ] input custom tensor object -> TensorImpl<type, size> x({I, J, K})
