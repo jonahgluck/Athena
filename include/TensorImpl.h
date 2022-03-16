@@ -6,8 +6,9 @@
 #include <cassert>
 #include <initializer_list>
 #include <iostream>
+#include <utility>
 
-template <typename T, int m, int... N>
+template<typename T, int m, int... N>
 class TensorImpl {
   private:
     std::array<TensorImpl<T, N...>, m> tensor;
@@ -16,24 +17,52 @@ class TensorImpl {
   public:
     auto& get(std::size_t idx) {
       /*
-       * return the value at an index
+       * @return the value at an index
        */
       return tensor.at(idx);
     }
 
     std::array<int,sizeof...(N)+sizeof(m)> getDim() {
       /*
-       * return the dimensions to the tensor
+       * @return the dimensions to the tensor
        */
       return dim;
     }
-
-    int getLast() {
-      return m;
+    
+    std::string dtype() {
+      /* 
+       * @return dataType of items stored in the tensor
+       * its associated with.
+       */
+      if(sizeof(T) == sizeof(double)) {
+        return "double";
+      } 
+      else if(sizeof(T) == sizeof(int)) {
+        return "int";
+      } 
+      else if(sizeof(T) == sizeof(long double)) {
+        return "long double";
+      }
+      else if(sizeof(T) == sizeof(short double)) {
+        return "short double";
+      }
+      else if(sizeof(T) == sizeof(long int)) {
+        return "long int";
+      }
+      else if(sizeof(T) == sizeof(short int)) {
+        return "short int";
+      }
+      else if(sizeof(T) == sizeof(float)) {
+        return "long int";
+      }
+      else if(sizeof(T) == sizeof(unsigned char)) {
+        return "unsigned char";
+      }
+      return "unknown";
     }
 };
 
-template <typename T, int m>
+template<typename T, int m>
 class TensorImpl<T, m> {
   // this is the last order of the recursive class above
   private:
@@ -41,7 +70,7 @@ class TensorImpl<T, m> {
   public:
     T& get(std::size_t idx) {
       /* 
-       * return the value at an index
+       * @return the value at an index
        */
       return tensor.at(idx);
     }
@@ -55,7 +84,7 @@ class TensorImpl<T, m> {
 
     std::array<int, 1> getDim() {
       /*
-       * return the dimensions of the tensor
+       * @return the dimensions of the tensor
        */
       std::array<int, 1> dim = {m};
       return dim;
@@ -66,6 +95,38 @@ class TensorImpl<T, m> {
        * Print item at index
        */
       std::cout << tensor.at(idx) << std::endl;
+    }
+
+    std::string dtype() {
+      /* 
+       * @return dataType of items stored in the tensor
+       * its associated with.
+       */
+      if(sizeof(T) == sizeof(double)) {
+        return "double";
+      } 
+      else if(sizeof(T) == sizeof(int)) {
+        return "int";
+      } 
+      else if(sizeof(T) == sizeof(long double)) {
+        return "long double";
+      }
+      else if(sizeof(T) == sizeof(short double)) {
+        return "short double";
+      }
+      else if(sizeof(T) == sizeof(long int)) {
+        return "long int";
+      }
+      else if(sizeof(T) == sizeof(short int)) {
+        return "short int";
+      }
+      else if(sizeof(T) == sizeof(float)) {
+        return "long int";
+      }
+      else if(sizeof(T) == sizeof(unsigned char)) {
+        return "unsigned char";
+      }
+      return "unknown";
     }
 };
 #endif

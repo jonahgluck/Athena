@@ -40,7 +40,7 @@ namespace op {
      */
     std::array<int, sizeof(t.getDim())/sizeof(t.getDim()[0])> dim = t.getDim();
     for(std::size_t i=0; i<dim[0]; i++) {
-      t.update(i, t.get(i) * t.get(i));
+      t.update(i, pow(t.get(i), power));
     }
   }
 

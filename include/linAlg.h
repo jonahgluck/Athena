@@ -20,7 +20,8 @@ namespace la {
       }
       return transposed;
     }
-  //void permute() {}
+
+    void permute() {}
   // permute
   // dot product
   // addition 
