@@ -18,7 +18,8 @@
 - [X] squared -> n^2 (ndims) 
 - [ ] indexing operator -> [n]...
 - [ ] add [ and ] to op::print tensor 
-- [ ] rand and randn 
+- [ ] rand
+- [X] randn
 - [ ] item() should return the value at that index and take no parameters
 - [ ] flatten() [[], []] -> []
 - [ ] unflatten(1, 2, 2) [i, j, k, l, m, n] -> [[i,j,k], [l, m, n]]
