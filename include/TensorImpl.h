@@ -22,13 +22,13 @@ class TensorImpl {
       return tensor.at(idx);
     }
 
-    std::array<int,sizeof...(N)+sizeof(m)> getDim() {
+    constexpr std::array<int,sizeof...(N)+sizeof(m)> getDim() {
       /*
        * @return the dimensions to the tensor
        */
       return dim;
     }
-    
+
     std::string dtype() {
       /* 
        * @return dataType of items stored in the tensor
@@ -42,9 +42,6 @@ class TensorImpl {
       } 
       else if(sizeof(T) == sizeof(long double)) {
         return "long double";
-      }
-      else if(sizeof(T) == sizeof(short double)) {
-        return "short double";
       }
       else if(sizeof(T) == sizeof(long int)) {
         return "long int";
@@ -82,7 +79,7 @@ class TensorImpl<T, m> {
       tensor.at(idx) = value;
     }
 
-    std::array<int, 1> getDim() {
+    constexpr std::array<int, 1> getDim() {
       /*
        * @return the dimensions of the tensor
        */
@@ -111,9 +108,6 @@ class TensorImpl<T, m> {
       else if(sizeof(T) == sizeof(long double)) {
         return "long double";
       }
-      else if(sizeof(T) == sizeof(short double)) {
-        return "short double";
-      }
       else if(sizeof(T) == sizeof(long int)) {
         return "long int";
       }
@@ -129,4 +123,14 @@ class TensorImpl<T, m> {
       return "unknown";
     }
 };
+
+    // TODO: initialize from lists
+    //void init(std::initializer_list<size_t> init_vals) {
+    //  std::vector<std::size_t> v(init_vals.begin(), init_vals.end());
+    //}
+    //TensorImpl<T, m, N...>& operator= (std::initializer_list<int> il) {
+    //  std::cout << "test";
+    //  return this*;
+    //}
+
 #endif
