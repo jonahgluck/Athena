@@ -58,6 +58,44 @@ for(std::size_t i=0; i<t.getDim()[0]; i++) {
 
 <hr>
 
-## Operations 
+## Operations ``(op::method<type>(params...))``
 
 
+``op::tpow<type>(t, power)``
+<br>
+Raises all values in the given tensor to a power
+```cpp
+// cubed
+op::tpow<double>(t, 3);
+```
+
+
+``op::fill<type>(t, value)``
+<br>
+Fill all of the values in a tensor with a number regardless of the index
+```cpp
+op::fill<double>(t, 2);
+```
+
+
+``op::print<type>(t)``
+<br>
+Print all values of a tensor with ``std::cout``
+```cpp
+op::print<double>(t);
+```
+
+
+``op::randn<type>(t)``
+<br>
+Fill a tensor with random normal values 
+```cpp
+op::randn<double>(t);
+```
+
+``op::tsqrt<type>(t)``
+<br>
+Take sqrt of all tensor values 
+```cpp
+op::tsqrt<double>(t);
+```
