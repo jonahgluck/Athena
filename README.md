@@ -58,7 +58,7 @@ for(std::size_t i=0; i<t.getDim()[0]; i++) {
 
 <hr>
 
-## Operations ``(op::method<type>(params...))``
+## Operations ``op::method<type>(params...)``
 
 
 ``op::tpow<type>(t, power)``
@@ -99,3 +99,58 @@ Take sqrt of all tensor values
 ```cpp
 op::tsqrt<double>(t);
 ```
+
+## Linear Algebra ``la::method<type>(params...)``
+
+
+``la::T_<type>(t)``
+<br>
+Return a transposed 2D matrix
+```cpp
+/*
+ * @return a 2d tranpose of the original tensor
+ * @param a tensor of type TensorImpl with dimensions n x m or n x n
+ */
+la::T_<double>(t);
+```
+
+
+``la::matmul<type>(x, y)``
+<br>
+Return the product of a 2D tensors 
+```cpp
+/*
+ * @return a tensor of type TensorImpl and size N1 x M2 
+ * @param m1: a tensor of type TensorImpl size N1 x M1
+ * @param m2: a tensor of type TensorImpl size N2 x M2
+ */
+la::matmul(x, y);
+```
+
+
+``la::add<type>(x, y)``
+<br>
+Return the sum of 2 tensors
+```cpp
+/*
+ * @return a tensor that is the result of m1 + m2
+ * @param m1: the larger tensor of N1 x M1 dimensions
+ * @param m2: a 1 x M2 dimensional tensor
+ */
+la::add(x, y);
+```
+
+
+``la::sum<type>(x, axis)``
+<br>
+Sum a tensor along its axis (``axis=0`` or ``axis=1``)
+```cpp
+/*
+ * @return the sum of the given axis 
+ * @param t: A 2D tensor
+ * @param axis: the direction to calculate the sum 
+ *              (0: sum for each row || 1: sum for each col)
+ */
+la::sum(x, 1);
+```
+
